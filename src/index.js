@@ -2,7 +2,9 @@
 import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import Header from './header.js'
-import ItemPost from './Posts.js';
+import ItemPosts from './ItemPosts.js';
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import LogIn from './LogIn.js' 
 
 const App = () => {
   const [posts, setPosts] = useState([])
@@ -18,7 +20,10 @@ const App = () => {
   return (
     <div>
       <Header/>
-      <ItemPost posts={posts}/>
+      <Routes>
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/' element={<ItemPosts posts={posts}/>} />
+      </Routes>
     </div>
   )
 }
@@ -28,5 +33,9 @@ const App = () => {
 
 const container = document.getElementById('app')
 const root = createRoot(container); 
-root.render(<App />)
+root.render(
+  <HashRouter>
+    <App />
+  </HashRouter>
+  )
 
