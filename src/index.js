@@ -1,7 +1,8 @@
 
 import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-
+import Header from './header.js'
+import ItemPost from './Posts.js';
 
 const App = () => {
   const [posts, setPosts] = useState([])
@@ -16,16 +17,8 @@ const App = () => {
 
   return (
     <div>
-      <ol>
-      {
-        posts.map((post) => { 
-          console.log(post)
-          return <li>{post.title} - {post.location} - {post.author.username}</li>
-
-        })
-         
-      }
-      </ol>
+      <Header/>
+      <ItemPost posts={posts}/>
     </div>
   )
 }
