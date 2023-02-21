@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const LogIn = () => { 
-    const [ displayLogInButton, setDisplayLogInButton] = useState(true)
-    const [ usernameInput, setUsernameInput] = useState('')
-    const [ passwordInput, setPasswordInput] = useState('')
+const LogIn = (props) => {
+    const navigate = useNavigate(); 
+    const [ displayLogInButton, setDisplayLogInButton ] = useState(true)
+    const [ usernameInput, setUsernameInput ] = useState('')
+    const [ passwordInput, setPasswordInput ] = useState('')
     const [ token, setToken ] = useState('')
+    
+    const logOut = () => {
+      setToken('')
+      setUsername('')
+      setPassword('')
+      setIsLoggedIn(false)
+      
+    }
 
     const logInOrRegister = async(event) =>{ 
       const logInOrRegisterEndPoint = event.target.childNodes[2].id === 'login' ? 'login' 
@@ -25,6 +35,8 @@ const LogIn = () => {
       const info = await response.json()
       console.log(info)
       setToken(info.data.token)
+      props.setIsLoggedIn(true)
+      navigate("/")
     }
 
     return(
@@ -38,6 +50,7 @@ const LogIn = () => {
             <>
               <button id="login">Log In</button>
               <button type="button" onClick={() => setDisplayLogInButton(false)} >Register Here</button>
+        
             </> : 
             <>
               {/* <input placeholder="confirm password"></input>           */}

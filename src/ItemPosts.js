@@ -3,6 +3,16 @@ import React from 'react'
 const ItemPosts = (props) => {
   console.log(props.posts)
     return (
+      <> 
+      {
+        props.isLoggedIn ? 
+          <form>
+            <input placeholder="New Item Name"></input>
+            <button>Make Post</button>
+          </form> :
+          null 
+
+      }
         <ol>
         {
           props.posts.map((post) => { 
@@ -13,6 +23,7 @@ const ItemPosts = (props) => {
            
         }
         </ol>
+        </>
     )
 }
 
