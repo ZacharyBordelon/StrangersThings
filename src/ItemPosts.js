@@ -1,4 +1,5 @@
 import React from 'react'
+ 
 
 const ItemPosts = (props) => {
   console.log(props.posts)
@@ -7,7 +8,10 @@ const ItemPosts = (props) => {
       {
         props.isLoggedIn ? 
           <form>
-            <input placeholder="New Item Name"></input>
+            <input placeholder="location"></input> 
+            <input placeholder="description"></input>
+            <input placeholder="price"></input>
+            <input placeholder="Item Name"></input>
             <button>Make Post</button>
           </form> :
           null 

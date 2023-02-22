@@ -3,19 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 const LogIn = (props) => {
     const navigate = useNavigate(); 
-    const [ displayLogInButton, setDisplayLogInButton ] = useState(true)
-    const [ usernameInput, setUsernameInput ] = useState('')
-    const [ passwordInput, setPasswordInput ] = useState('')
-    const [ token, setToken ] = useState('')
     
-    const logOut = () => {
-      setToken('')
-      setUsername('')
-      setPassword('')
-      setIsLoggedIn(false)
-      
-    }
-
     const logInOrRegister = async(event) =>{ 
       const logInOrRegisterEndPoint = event.target.childNodes[2].id === 'login' ? 'login' 
       : 'register'
@@ -27,14 +15,14 @@ const LogIn = (props) => {
         },
         body: JSON.stringify ({
           user: {
-            username: usernameInput,
-            password: passwordInput
+            username: props.usernameInput,
+            password: props.passwordInput
           }
         })        
       })
       const info = await response.json()
-      console.log(info)
-      setToken(info.data.token)
+      //console.log(info)
+      props.setToken(info.data.token)
       props.setIsLoggedIn(true)
       navigate("/")
     }
@@ -43,19 +31,19 @@ const LogIn = (props) => {
       <div>
         <h1>Log In</h1>
         <form onSubmit={logInOrRegister}>
-          <input placeholder='Username' onChange={(event) => setUsernameInput(event.target.value)}></input>
-          <input placeholder='Password' onChange={(event) => setPasswordInput(event.target.value)}></input>
+          <input placeholder='Username' onChange={(event) => props.setUsernameInput(event.target.value)}></input>
+          <input placeholder='Password' onChange={(event) => props.setPasswordInput(event.target.value)}></input>
           {
-            displayLogInButton ? 
+            props.displayLogInButton ? 
             <>
               <button id="login">Log In</button>
-              <button type="button" onClick={() => setDisplayLogInButton(false)} >Register Here</button>
+              <button type="button" onClick={() => props.setDisplayLogInButton(false)} >Register Here</button>
         
             </> : 
             <>
               {/* <input placeholder="confirm password"></input>           */}
               <button id='register'>Register</button>
-              <button type="button" onClick={() => setDisplayLogInButton(true)}>Return to Log In</button>
+              <button type="button" onClick={() => props.setDisplayLogInButton(true)}>Return to Log In</button>
             </>
           }
         </form>

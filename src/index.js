@@ -9,6 +9,11 @@ import LogIn from './LogIn.js'
 const App = () => {
   const [posts, setPosts] = useState([])
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
+  const [ usernameInput, setUsernameInput ] = useState('')
+  const [ passwordInput, setPasswordInput ] = useState('')
+  const [ token, setToken ] = useState('')
+  const [ displayLogInButton, setDisplayLogInButton ] = useState(true)
+
   useEffect(() => {
     const getPosts = async() => {
       const response = await fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am/posts')
@@ -20,9 +25,23 @@ const App = () => {
 
   return (
     <div>
-      <Header />
+      <Header 
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn} 
+        setToken={setToken} 
+        setUsernameInput={setUsernameInput} 
+        setPasswordInput={setPasswordInput} 
+        setDisplayLogInButton={setDisplayLogInButton}/>
       <Routes>
-        <Route path='/login' element={<LogIn setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path='/login' element={<LogIn
+        setToken={setToken}
+        usernameInput={usernameInput}
+        passwordInput={passwordInput}
+        displayLogInButton={displayLogInButton} 
+        setUsernameInput={setUsernameInput}
+         setIsLoggedIn={setIsLoggedIn}
+         setPasswordInput={setPasswordInput}
+         />} />
         <Route path='/' element={<ItemPosts isLoggedIn={isLoggedIn} posts={posts}/>} />
         
       </Routes>
