@@ -21,7 +21,7 @@ const LogIn = (props) => {
         })        
       })
       const info = await response.json()
-      //console.log(info)
+      //console.log('INFO',info)
       props.setToken(info.data.token)
       props.setIsLoggedIn(true)
       navigate("/")

@@ -13,7 +13,11 @@ const App = () => {
   const [ passwordInput, setPasswordInput ] = useState('')
   const [ token, setToken ] = useState('')
   const [ displayLogInButton, setDisplayLogInButton ] = useState(true)
-
+  const [ priceInput, setPriceInput ] = useState('')
+  const [ locationInput, setLocationInput ] = useState('')
+  const [ descriptionInput, setDescriptionInput ] = useState('')
+  const [ TitleInput, setTitleInput] = useState('')
+  
   useEffect(() => {
     const getPosts = async() => {
       const response = await fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am/posts')
@@ -42,7 +46,21 @@ const App = () => {
          setIsLoggedIn={setIsLoggedIn}
          setPasswordInput={setPasswordInput}
          />} />
-        <Route path='/' element={<ItemPosts isLoggedIn={isLoggedIn} posts={posts}/>} />
+        <Route path='/' element={<ItemPosts 
+          token={token}
+          isLoggedIn={isLoggedIn}
+          posts={posts}
+          setPosts={setPosts}
+          priceInput={priceInput}
+          setPriceInput={setPriceInput}
+          locationInput={locationInput}
+          setLocationInput={setLocationInput}
+          descriptionInput={descriptionInput}
+          setDescriptionInput={setDescriptionInput}
+          TitleInput={TitleInput}
+          setTitleInput={setTitleInput}
+          />} />
+          
         
       </Routes>
     </div>
