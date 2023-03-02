@@ -21,7 +21,6 @@ const LogIn = (props) => {
         })        
       })
       const info = await response.json()
-      //console.log('INFO',info)
       props.setToken(info.data.token)
       props.setIsLoggedIn(true)
       navigate("/")
@@ -31,19 +30,19 @@ const LogIn = (props) => {
       <div>
         <h1>Log In</h1>
         <form onSubmit={logInOrRegister}>
-          <input placeholder='Username' onChange={(event) => props.setUsernameInput(event.target.value)}></input>
-          <input placeholder='Password' onChange={(event) => props.setPasswordInput(event.target.value)}></input>
+          <input class='post-form' placeholder='Username' onChange={(event) => props.setUsernameInput(event.target.value)}></input>
+          <input class='post-form' placeholder='Password' onChange={(event) => props.setPasswordInput(event.target.value)}></input>
           {
             props.displayLogInButton ? 
             <>
-              <button id="login">Log In</button>
-              <button type="button" onClick={() => props.setDisplayLogInButton(false)} >Register Here</button>
+              <button class='post-form' id="login">Log In</button>
+              <button class='post-form' type="button" onClick={() => props.setDisplayLogInButton(false)} >Register Here</button>
         
             </> : 
             <>
-              {/* <input placeholder="confirm password"></input>           */}
-              <button id='register'>Register</button>
-              <button type="button" onClick={() => props.setDisplayLogInButton(true)}>Return to Log In</button>
+              
+              <button class='post-form' id='register'>Register</button>
+              <button class='post-form' type="button" onClick={() => props.setDisplayLogInButton(true)}>Return to Log In</button>
             </>
           }
         </form>

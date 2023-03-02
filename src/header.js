@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom"
 
 const Header = (props) => {
-    //console.log(props.usernameInput)
+
     const logOut = () => {
         props.setToken('')
         props.setUsernameInput('')
@@ -14,7 +14,7 @@ const Header = (props) => {
     return (
         <header>
             <h2>Welcome to Strangers' Things!</h2>
-            <span><Link to='/'>Posts</Link></span>
+            <span><Link to='/'>Posts </Link></span>
             {
                 props.isLoggedIn ? 
                 

@@ -3,3 +3,12 @@ body {
      background-color: black;
 }
 
+.post-form{
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     max-width: 300px;
+     min-width: 200px;
+     color:lime;
+     background-color:black;
+}
